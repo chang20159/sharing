@@ -18,6 +18,9 @@
 </style>
 
 # HTML 5
+常艳芳<br><br>
+商户前端技术组
+
 ---
 # HTML 5 技术
 <table class="html5">
@@ -91,7 +94,7 @@ iframe的安全性无法保证
 </aside>
 
 --- 
-## The HTML5 Support
+## HTML5 Support
 - sandbox  限制iframe页面的行为
 - seamless 去除边框和滚动条 [不支持](http://stackoverflow.com/questions/4804604/html5-iframe-seamless-attribute)
 - srcdoc 与 sandbox 和 seamless 属性一同使用 [srcdoc vs src](http://stackoverflow.com/questions/19739001/which-is-the-difference-between-srcdoc-and-src-datatext-html-in-an)
@@ -129,7 +132,7 @@ iframe的安全性无法保证
 - [Comet  “服务器推”](https://www.ibm.com/developerworks/cn/web/wa-lo-comet/)
 
 --- 
-## the HTML5 Support
+## HTML5 Support
 <ul>
     <li class="fragment">[WebSocket](https://developer.mozilla.org/zh-CN/docs/WebSockets)</li>
     <li class="fragment">[Server Sent Events](https://developer.mozilla.org/zh-CN/docs/Server-sent_events/Using_server-sent_events)</li>
@@ -248,35 +251,35 @@ data: to accomplish some task.
 
 --- 
 
-## Web应用可涉及哪些缓存？
-
---- 
-
-+ 数据库数据缓存
-    + memcached、redis
-- 服务端缓存
-    - 代理服务器缓存
-    - CDN缓存
-- HTTP缓存 cookie
-    - 本地缓存 
-    - 协商缓存
-- Web Storage
-    - sessionStorage
-    - localStorage
-- IndexedDB
+## Before
+- [cookie](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)
 - Web SQL
-- 离线缓存
-    - Application Cache （已废弃）
-    - Service Workers 
-      - CacheStorage 保存每个serverWorker声明的cache对象
-<aside class="notes">
-原生APP本来就支持可离线访问资源
-navigator.onLine 是一个值为 true/false  (true 表示在线， false 表示离线) 的属性
-</aside>
+
+---
+## cookie
+- 每次请求都会携带cookie
+- 浏览器对cookie的个数和大小有限制
+
+服务器发送到用户浏览器并保存在浏览器上的一块数据,    
+浏览器下一次发起请求时被携带并发送到服务器上
+
+---
+## Web SQL（已废弃）
+
+- 让浏览器支持小型数据库存储功能
+- 无法统一各个浏览器厂商实现的SQL语言
+- [Web SQL Database规范](https://dev.w3.org/html5/webdatabase/)
+
+<p style="color:red">Beware. This specification is no longer in active maintenance and the Web Applications Working Group does not intend to maintain it further.</p>
+
+---
+## HTML5 Support
+- DOM存储
+- IndexedDB
 
 --- 
 
-## Web Storage
+## DOM存储
 - 更大存储量，更安全，更便捷
 - 存储不需要与服务器交互的数据
 
@@ -298,7 +301,19 @@ navigator.onLine 是一个值为 true/false  (true 表示在线， false 表示�
 - 示例：大象web
 
 ---
-## 应用缓存
+
+# 离线缓存
+- Application Cache （已废弃）
+- Service Workers 
+
+<aside class="notes">
+原生APP本来就支持可离线访问资源
+navigator.onLine 是一个值为 true/false  (true 表示在线， false 表示离线) 的属性
+</aside>
+
+---
+## Application Cache 
+### 应用缓存
 - html 元素上增加 manifest 特性
 - 添加缓存清单(cache manifest) 文件
 - 将manifest特性与缓存清单文件关联
@@ -347,18 +362,6 @@ this.addEventListener('install', function(event) { ... })
     https://mdn.github.io/sw-test/
 </aside>
 
---- 
-@data-background:: ./image/html5/http-cache.png
-## HTTP缓存
-
----
-## Web SQL（已废弃）
-
-- 让浏览器支持小型数据库存储功能
-- 无法统一各个浏览器厂商实现的SQL语言
-- [Web SQL Database规范](https://dev.w3.org/html5/webdatabase/)
-
-<p style="color:red">Beware. This specification is no longer in active maintenance and the Web Applications Working Group does not intend to maintain it further.</p>
 
 ---
 
@@ -387,7 +390,7 @@ this.addEventListener('install', function(event) { ... })
 
 --- 
 ## Video & Audio
-### src or `<source>`
+
 ```markup
 <video width="200" height="200" controls>
     <source src="movie.ogg" type="video/ogg">
@@ -399,7 +402,7 @@ this.addEventListener('install', function(event) { ... })
     <source src="http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg" type="audio/wav">
 </audio>
 ```
-
+### src or `<source>`
 ---
 
 # High Performance
@@ -455,6 +458,10 @@ alert('end');
 - 传入 Worker 构造函数的参数 URI 必须遵循同源策略
 - [Demo1](/demo/html5/JSThread-UIThread/test.html) [Demo2](http://mdn.github.io/simple-web-worker/)
 
+<aside class="notes">
+    Web Workers是一种机制，通过它可以使一个脚本操作在与Web应用程序的主执行线程分离的后台线程中运行。这样做的优点是可以在单独的线程中执行繁琐的处理，让主（通常是UI）线程运行而不被阻塞/减慢。
+</aside>
+
 --- 
 
 ```javascript
@@ -475,13 +482,18 @@ onmessage = function(e) {
 }
 ```
 
----
 
-## XMLHttpRequest Level 2
-## 即时编译的 JavaScript 引擎
 ---
 #  Device Access
 ---
+## 图片上传预览
+- window.URL.createObjectURL() && window.URL.revokeObjectURL()
+- FileReader
+- [Demo](demo/html5/device-access/image-preview.html)
+- [在web应用中使用文件](https://developer.mozilla.org/zh-CN/docs/Using_files_from_web_applications)
+
+---
+
 # 3D Graphics and Effects
 ---
 ## Canvas
@@ -491,7 +503,7 @@ onmessage = function(e) {
 ## WebGL
 ---
 # CSS3
-
+---
 ## New Style
 - 圆角
 - 阴影
@@ -503,6 +515,7 @@ onmessage = function(e) {
 ## New Layout
 - multi-columns 
 - flexible box 
+
 ---
 # 其他
 - Fullscreen API
@@ -552,13 +565,24 @@ section, article, aside, footer, header, nav, hgroup{
 
 --- 
 
-## polyfill
-- canvas --> exCanvas
-- SVG --> Raphaël
-- MathML --> MathJax
+## Polyfill
+
+[HTML5 Cross Browser Polyfills](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills)
+<aside class="notes">
+    Polyfill或者Polyfiller，是英国Web开发者 Remy Sharp 在咖啡店蹲坑的时候拍脑袋造出来的。当时他想用一个词来形容"用JavaScript（或者Flash之类的什么鬼）来实现一些浏览器不支持的原生API"。Shim这个已经有的词汇第一时间出现在他的脑海里。但是他回头想了一下Shim一般有自己的API，而不是单纯实现原生不支持的API。苦思冥想一直想不到合适的单词，于是他一怒之下造了一个单词Polyfill。除了他自己用这个词以外，他还给其他开发者用。随着他在各种Web会议演讲和他写的书《Introducing HTML5》中频繁提到这个词，大家用了都觉得很好，就一起来用。
+    Polyfill的准确意思为：用于实现浏览器并不支持的原生API的代码。
+    例如，querySelectorAll是很多现代浏览器都支持的原生Web API，但是有些古老的浏览器并不支持，那么假设有人写了库，只要用了这个库， 你就可以在古老的浏览器里面使用document.querySelectorAll，使用方法跟现代浏览器原生API无异。那么这个库就可以称为Polyfill或者Polyfiller。
+
+    好，那么问题就来了。jQuery是不是一个Polyfill?答案是No。因为它并不是实现一些标准的原生API，而是封装了自己API。一个Polyfill是抹平新老浏览器 标准原生API 之间的差距的一种封装，而不是实现自己的API。
+
+    已有的一些Polyfill，如 Polymer 是让旧的浏览器也能用上 HTML5 Web Component 的一个Polyfill。FlashCanvas是用Flash实现的可以让不支持Canvas API的浏览器也能用上Canvas的Polyfill。
+
+    这里有一堆Polyfills，有兴趣可以把玩一下：HTML5 Cross Browser Polyfills
+</aside>
 
 --- 
 # 参考
+- [HTML 5](https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5)
 - [html5test](http://html5test.com/)
 - [Can I use](http://caniuse.com/)
 

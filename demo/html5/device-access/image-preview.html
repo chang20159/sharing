@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>本地上传图片预览</title>
+</head>
+<body>
+	<input type="file" id="input" accept="image/*"  multiple >
+	<div id="container"></div>
+
+	<script type="text/javascript">
+		var container = document.getElementById("container");
+		var input = document.getElementById("input");
+		input.onchange = function handleFiles(e){
+			let files = e.target.files;
+			for(let i = 0; numFiles = files.length,i < numFiles;i++){
+				let file = files[i];
+				let img = new Image();
+				img.style.height = "200px";
+				img.style.width = "200px";
+
+				try{
+					let url = URL.createObjectURL(file);
+					img.src = url;
+					img.onload = function() {
+	                    URL.revokeObjectURL(url);  
+	            	};
+				}catch(e){
+					let fileReader = new FileReader();
+					fileReader.onload = function(event){
+						img.src = event.target.result;
+					}
+					fileReader.readAsDataURL(file);   
+				}       
+				container.appendChild(img);				
+			}
+		}
+	</script>
+</body>
+</html>
