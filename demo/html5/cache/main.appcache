@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# v1 2017-03-26
+# This is another comment
+main.html
+http://p1.meituan.net/activityback/30bbd249f6810e7019d8c94f03581fb857402.jpg
+
+# Use from network if available
+NETWORK:
+main.css
+
+# Fallback content
+FALLBACK:
+/test main.html

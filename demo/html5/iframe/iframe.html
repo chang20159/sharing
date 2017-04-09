@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iframe</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		iframe{
+			width: 80%;
+		}
+		span{
+			color: #ff6633;
+		}
+	</style>
+</head>
+<body>
+	<form name="form1"> 
+		<div>
+			<iframe id="query" name="query" 	
+					sandbox='allow-forms allow-top-navigation allow-scripts allow-same-origin'  
+					seamless
+					src="./test.html"  >		
+			</iframe> 
+		</div> 
+		<div> 
+			<iframe name="myIframe" frameborder="0" scrolling="no"></iframe> 
+		</div> 
+	</form>
+	<form name="jumpform" target="myIframe" action="test.html">
+		<input type="submit" value="提交">
+	</form>
+
+	Blocked form submission to '' because the form's frame is sandboxed and the 'allow-forms' permission is not set.
+</body>
+
+</html>

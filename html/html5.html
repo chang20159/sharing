@@ -1,0 +1,412 @@
+<style>
+		table[class='html5'] img{
+			width: 3em;
+			background-color: initial;
+			border : none;
+		}
+		table[class='html5'] td{
+			text-align: center;
+			padding: 1em 1em;
+			border-bottom: none;
+		}
+		section[class='vs'] table tbody tr td:first-child {
+			width: 20%;
+		}
+		section[class='vs'] table tbody tr td:last-child {
+			width: 40%;
+		}
+</style>
+
+<html>
+	<section>
+		<h1>HTML 5</h1>
+	</section>
+
+	<section>
+		<h2>为什么要用HTML5</h2>
+	</section>
+
+	<section>
+		<h2>HTML5 有什么</h2>
+		<table class="html5">
+			<tr>
+				<td><img src="image/html5/html5-logo/html5_semantics.svg"><br>语义化标签</td>
+				<td><img src="image/html5/html5-logo/html5_connectivity.svg"><br>通信</td>
+				<td><img src="image/html5/html5-logo/html5_offline_storage.svg"><br>离线 & 存储</td>
+				<td><img src="image/html5/html5-logo/html5_multimedia.svg"><br>多媒体</td>
+			</tr>
+			<tr>
+				<td><img src="image/html5/html5-logo/html5_3d_effects.svg"><br>绘图&3D效果</td>
+				<td><img src="image/html5/html5-logo/html5_device_access.svg"><br>设备访问</td>
+				<td><img src="image/html5/html5-logo/html5_perfintegration.svg"><br>性能 & 集成</td>
+				<td><img src="image/html5/html5-logo/html5_css3_styling.svg"><br>CSS3样式</td>
+			</tr>
+		</table>
+	</section>
+	<section>
+		<h1>标 签 & 属性</h1>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			## Before	
+			```markup
+			<div class="header"> a logo</div>
+			<div class="section">
+				<h1>This is a title</h1>
+				<p>This is a paragraph.</p>
+				<div class="subsection">
+					<h2>This is a title</h1>
+					<p>This is a paragraph.</p>
+				</div>
+			</div>
+			<input type="text" id="email">
+			```
+		</script>
+	</section>
+	<section class="html5" data-markdown>
+		<script type="text/template">
+			## 语义化标签
+			- 文档结构
+			  - ` <main> <section> <article> <nav> <header> <footer> <aside> <hgroup> <menu> <menuitem> ` 
+			- 多媒体
+			  - `<audio>  <video> <source> <track>`
+			- 新的表单属性和元素 
+			  - `input[type='url | tel | email | search'],<datalist>,<output>`
+			  - 约束验证 pattern | maxlength | min | max | step
+			  - 阻止约束验证 novalidate | formnovalidate
+			- [HTML5标签列表](https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list)	[[Demo](demo/html5/html5.html)]
+			<!-- - 其他
+ 			  - `<progress> <meter> <figure> <figcaption>  <data> `
+ 			  - `<mark> <keygen> <details> <summary> <time>`
+			  - `<template> <ruby> <rt> <rp> <bdi> <wbr> `
+			  - `<canvas> <svg> <math>`	 -->	
+		</script>
+	</section>
+	
+	<section data-markdown>
+		<script type="text/template">
+			## Before
+			- iframe的安全性无法保证 
+			- iframe无法使用父页面的样式
+		</script>
+		<aside class="notes">
+			iframe缺点：
+			 iframe会阻塞主页面的Onload事件
+			 不利于SEO，只能看到iframe标签，iframe内的页面看不到
+			 iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
+			 使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好通过JavaScript动态给iframe添加src属性值，这样可以绕开以上两个问题
+
+			 iframe用处：
+			 长连接 （websocket）
+			 跨域通信 （CORS）
+			 无刷新文件上传 （FormData）
+			 历史记录管理 （html5 history api）
+		</aside>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			## The HTML5 Way
+			- sandbox  限制iframe页面的行为
+			- seamless 去除边框和滚动条 [不支持](http://stackoverflow.com/questions/4804604/html5-iframe-seamless-attribute)
+			- srcdoc 与 sandbox 和 seamless 属性一同使用 [srcdoc vs src](http://stackoverflow.com/questions/19739001/which-is-the-difference-between-srcdoc-and-src-datatext-html-in-an)
+			- [Demo](demo/html5/iframe/iframe.html)
+		</script>
+	</section>
+	<section>
+		<h2><a href="https://developer.mozilla.org/zh-CN/docs/Web/MathML">MathML</a></h2>
+		<math>
+			<mrow>
+		        <msup>
+		            <mi> a </mi>
+		            <mn>2</mn>
+		        </msup>
+		        <mo> + </mo>
+		        <msup>
+		            <mi> b </mi>
+		            <mn>2</mn>
+		        </msup>
+		        <mo> = </mo>
+		        <msup>
+		            <mi> c </mi>
+		            <mn>2</mn>
+		        </msup>
+		    </mrow>
+		</math>
+	</section>
+
+	<section>
+		<h1>Connection</h1>
+	</section> 
+	<section data-markdown>
+		<script type="text/template">
+			## Before
+			- 短轮询
+			- [Comet](https://www.ibm.com/developerworks/cn/web/wa-lo-comet/)(“服务器推”技术)
+		</script>
+	</section>
+	
+	<section data-markdown>
+		<script type="text/template">
+			## the HTML5 way
+			<ul>
+				<li class="fragment">[WebSocket](https://developer.mozilla.org/zh-CN/docs/WebSockets)</li>
+				<li class="fragment">[Server Sent Events](https://developer.mozilla.org/zh-CN/docs/Server-sent_events/Using_server-sent_events)</li>
+				<li class="fragment">[WebRTC](https://developer.mozilla.org/zh-CN/docs/WebRTC)</li>
+			</ul>
+			
+		</script>
+	</section>
+	<section data-markdown>
+		## Websocket
+		- 独立、全新的协议，基于TCP
+		- 浏览器和服务器间进行全双工通讯,数据可双向传输
+		- Opening Handshake and Closing Handshake	
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			## Websocket 客户端
+			```javascript
+			var ws = new WebSocket('ws://localhost:8080/ws?uid='+uid);
+			ws.onopen = function(event){
+				console.log("websocket:已连接");
+			}
+			ws.onmessage = function(event){
+				console.log("收到一条消息");
+			}
+			ws.onclose = function(){
+				console.log("websocket:已关闭");
+			}
+			ws.onerror=function(e){
+				console.log("websocket:发生错误");
+			}
+			ws.send(data); <!-- 通过WebSocket连接向服务器发送数据 -->
+			ws.close(); <!-- 关闭WebSocket连接或停止正在进行的连接请求 -->
+			```
+		</script>
+	</section>
+	
+	<section data-markdown>
+		<script type="text/template">
+		## Websocket 服务端
+		- [socket.io](https://socket.io/)
+		- [WebSocket-Node](https://github.com/theturtle32/WebSocket-Node)
+		- [spring-websocket](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html)
+		</script>
+	</section>
+
+	<section data-markdown>
+		<script type="text/template">
+		## Server-sent Events 
+		### 服务端推送事件
+		- 服务端事件触发，向客户端推送新数据
+		- Opening Handshake and Closing Handshake	
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+		## Server Sent Events 客户端
+		```javascript
+		var evtSource = new EventSource('http://localhost:8080/server-sent-events?requestTime=' + new Date().getTime());
+		evtSource.onmessage = function(e){
+			<!-- 监听服务端没有指定事件类型(event字段)的消息 -->
+		};
+		evtSource.addEventListener(eventType, function(e) { <!-- 监听其他-->}, false);类型事件
+		evtSource.onopen = function(e){  <!-- 连接刚打开时被调用 --> }
+		```
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+		## Server Sent Events 服务端
+		- 响应内容类型 text/event-stream
+		- 事件流格式
+
+		```markup
+		event: userconnect
+		data: {"username": "bobby", "time": "02:33:48"}
+
+		data: Here's a system message of some kind that will get used
+		data: to accomplish some task.
+		```
+		</script>
+	</section>
+	
+
+	<section data-markdown>
+		<script type="text/template">
+			## [WebRTC](https://developer.mozilla.org/zh-CN/docs/WebRTC)
+			浏览器之间点对点（Peer to Peer）语音/视频交流和数据分享
+	
+			- MediaStream  :   获取音频流和视频流
+			- RTCPeerConnection ：建立和维护端到端连接
+			- RTCDataChannel
+		</script>
+	</section>
+
+	<section>
+		<h1>Discussion</h1>
+	</section>
+	<section>
+		<h1> Websocket<br> <span style="color:red">VS</span> <br> Server-sent Events </h1>
+		<aside class="notes">
+			[Web端即时通讯技术盘点：短轮询、Comet、Websocket、SSE](http://www.52im.net/thread-336-1-1.html)
+		</aside>
+	</section>
+	<section>
+		<h1>Instant Messaging<br>  <span style="color:blue">and</span>  <br> Real-time Communication</h1>
+		<aside class="notes">
+			[是时候区分下即时通信和实时通信了](https://www.agora.io/cn/news/1530/)
+		</aside>
+	</section>
+
+	<section>
+		<h1>Client-side storage</h1>
+	</section>
+	<section>
+		<h1>有哪些缓存类型？</h1>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			- 数据库数据缓存
+				- memcached、redis
+			- 服务端缓存
+				- 代理服务器缓存
+				- CDN缓存
+			- HTTP缓存 cookie
+				- 本地缓存 
+				- 协商缓存
+			- DOM存储
+				- sessionStorage
+				- localStorage
+			- 离线缓存
+				- Application Cache （已废弃）
+				- Service Workers 
+
+			<aside>
+			原生APP本来就支持可离线访问资源
+			navigator.onLine 是一个值为 true/false  (true 表示在线， false 表示离线) 的属性
+			</aside>
+		</script>
+	
+	</section>
+	<section data-markdown>
+		<h1>HTTP缓存</h1>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			## DOM存储
+			- 更大存储量，更安全,更便捷
+			- 存储不需要与服务器交互的数据
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			## 应用缓存
+			- html 元素上增加 manifest 特性
+			- 添加缓存清单(cache manifest) 文件
+			- 将manifest特性与缓存清单文件关联
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			## app cache文件
+			```markup
+			<html manifest="main.appcache"></html>
+			```
+			```markup
+			CACHE MANIFEST
+			# v1 2017-03-26
+			# 缓存资源
+			CACHE:
+			main.html
+			http://p1.meituan.net/activityback/30bbd249f6810e7019d8c94f03581fb857402.jpg
+
+			# 需要向服务器请求的资源
+			NETWORK:
+			main.css
+
+			# 需要向服务器请求的资源 请求失败的后背页面	
+			FALLBACK:
+			/test main.html
+
+			```
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			## Service Workers
+			- 注册
+				```javascript
+				ServiceWorkerContainer.register(scriptURL, options).then(
+			        function(ServiceWorkerRegistration) {
+			            // do something
+			        }
+				);
+				```
+			- 安装
+				```javascript
+				this.addEventListener('install', function(event) { //do something }
+				```
+			<aside> 
+				chrome://serviceworker-internals
+				https://mdn.github.io/sw-test/
+			</aside>
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			- DOM存储
+			  - sessionStorage
+			  - localStorage
+			- 离线缓存
+			  - AppCache
+			  - Service Workers
+			- IndexedDB
+		</script>
+	</section>
+	<section>
+		<h2>DOM存储</h2>
+	</section>
+	<section>
+		<h2>离线缓存</h2>
+	</section>
+	<section>
+		<h2>IndexedDB</h2>
+	</section>
+
+	<section>
+		<h1>多媒体</h1>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			## Before
+			- flash
+		</script>
+	</section>
+
+	<section data-markdown>
+		<script type="text/template">
+			- video
+			- audio
+		</script>
+	</section>
+
+	<section>
+		<h1>DEVICE ACCESS ,  the HTML5 way</h1>
+	</section>
+
+	<section>
+		<h1>CSS3 Layout , the HTML5 way</h1>
+	</section>
+
+	<section>
+		http://html5test.com/
+		http://caniuse.com/
+	</section>
+	<section>
+		<h2>优雅降级</h2>
+		<pre class="language-css"><code class="language-css">section, article, aside, footer, header, nav, hgroup { 
+			display:block;}</code></pre>
+	</section>
+
+</html>

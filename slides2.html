@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>分享</title>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<!-- <link rel="stylesheet" href="css/theme/dark.css" id="theme"> -->
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" type="text/css" href="https://developer.cdn.mozilla.net/static/styles/libs/mathml.css" >
+      
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="plugin/prism/prism.css">
+		<link rel="stylesheet" href="css/print/pdf.css" media="print">
+        <style type="text/css"></style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal"><div class="slides" id="slides"></div></div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="plugin/markdown/marked.js"></script>
+		<script>
+
+		function initReveal() {
+            var config = {
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+                rollingLinks: false,
+				transition: Reveal.getQueryHash().transition || 'linear',
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					//{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlighting(); } },
+                    { src: 'plugin/prism/prism.js', async: true, callback: function() {
+                            // var codes = [].slice.call(document.querySelectorAll('pre code'));
+                            // codes.forEach(function(item){
+                            //     item.classList.add('language-' + item.classList[0]);
+                            // });
+                            Prism.highlightAll();
+                    } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					
+				]
+            };
+			Reveal.initialize(config);
+		};
+
+        function init(){
+        	var paragraphs = [].slice.call(document.getElementsByTagName('p')),
+        	paragraph;
+        	for (var i = 0, len = paragraphs.length; i < len; i++) {
+                paragraph = paragraphs[i];
+                text = paragraph.textContent || paragraph.innerText;
+                if (!/^@\w+/.test(text)) { continue; }
+                configs = text.split(/ *, */);
+                for (var j = 0; j < configs.length; j++) {
+                    config = configs[j].split(/ *:: */);
+                    paragraph.parentNode.setAttribute(config[0].split("@")[1],config[1]);
+                }
+                paragraph.parentNode.removeChild(paragraph);
+            }
+        }
+
+		(function() {
+			var httpRequest = new XMLHttpRequest();
+			httpRequest.onreadystatechange = function() {
+				if (httpRequest.readyState === 4) {
+                    var md = httpRequest.responseText;
+                    var html = marked(md, {gfm:true});
+                    html = html.replace(/(<\/section>)?\s*<hr>\s*(<section[^>]*>)?/ig, function(matched, group1, group2){
+                        return '</section>\n' + (group2 || '<section>');
+                    });
+                    html = html.replace(/^\s*(<section[^>]*>)?/, function(matched, group1){
+                        return group1 || '<section>';
+                    });
+                    html = html.replace(/(<\/section>)?\s*$/, '</section>');
+					document.getElementById('slides').innerHTML = html;
+					init();
+					initReveal();
+				}
+			};
+            var match = /[?&]file=([\w\d-_\/~\.]+)/.exec(location.search);
+            if (!match) {
+                alert('没有指定要演示的文档！');
+                window.location.href = 'index.html';
+            } else {
+                var file = match[1];
+                var url = file.indexOf('/') > -1 ? file : ('content/' + file + '.md');
+                httpRequest.open('GET', url + '?_t' + Math.random() , true);
+                httpRequest.send(null);
+            }
+		})();
+		</script>
+	</body>
+</html>

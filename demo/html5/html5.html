@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="https://developer.cdn.mozilla.net/static/styles/libs/mathml.css" >
+	<style type="text/css">
+		main{
+			margin: 0 30px;
+		}
+		form{
+			margin-bottom: 20px;
+		}
+		output{
+		    display: inline-block;
+		    width: 100px;
+		    height: 18px;
+		    border: 1px solid #ccc;
+		    vertical-align: bottom;
+		}
+		.section > h2{
+			padding-left: 10px;
+		}
+		.section:nth-child(2n) > h2{
+			border-left: 3px solid #ff9000;
+		}
+		.section:nth-child(2n+1) > h2{
+			border-left: 3px solid #2bb8aa;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<section class="section">
+			<h2>表单</h2>
+			<section>
+				<form id="form" novalidate>
+					<input type="search" placeholder="search" list="datalist">
+					<input type="tel" maxlength='11' pattern='[0-9]+' placeholder="tel">
+					<input type="submit" value="确定提交">
+					<datalist id="datalist">
+						<option>赵小姐不等位</option>
+						<option>哥老官重庆牛蛙火锅</option>
+						<option>左庭右院</option>
+					</datalist>	
+				</form>
+
+				<form>
+					<input type="url" placeholder="url"  >
+					<input type="email" placeholder="email" autofocus>
+					<input type="submit" value="确定提交" formnovalidate>
+				</form>
+
+				<form>
+					<input type="number" placeholder="number">
+					<input type="range" placeholder="range">
+				</form>
+
+				<form>
+					<input type="url" placeholder="url提交需验证"  >
+					<input type="email" placeholder="email提交需验证" autofocus>
+					<input type="submit" value="确定提交">
+				</form>
+
+				<form>
+					<input type="color" ><br>
+					<input type="image" value="图片提交按钮">
+				</form>
+
+				<form>
+					<label>date: </label><input type="date" >（年，月，日，不包括时间）<br>
+					<label>datetime: </label><input type="datetime" >（UTC 时区，时，分，秒及几分之一秒）<br>
+					<label>datetime-local: </label><input type="datetime-local" >（日期时间控件，不包含时区）<br>
+					<label>time: </label><input type="time" >（不含时区  时间控件）<br>
+					<label>month: </label><input type="month" >（年月的控件，不带时区）<br>
+					<label>week: </label><input type="week" >（星期-年组成的日期，日期不包括时区）<br>
+				</form>
+
+				<form oninput="output.value=parseInt(num1.value)+parseInt(num2.value)-parseInt(num3.value)">
+					<input type="number" name="num1" value='1'>
+					<input type="number" name="num2" value='1'>
+					<input type="number" name="num3" value='1'>
+					<output for="num1 num2 num3" name="output"></output> <!-- 表示计算的结果 -->
+				</form>
+
+				<form autocomplete="on">
+					<label for="name">姓名: </label><input type="text" id="name" placeholder="autocomplete is on">
+					<label for="school">学校: </label><input type="text" id1="school" autocomplete="off" placeholder="autocomplete is off">
+					<input type="submit" >
+				</form>
+
+				<form>
+					<label>required attribute  </label><input type="date" required ><br>
+					<label>multiple attribute only type= file | email  </label><input type="file" multiple>
+					<input type="submit" >
+				</form>
+			</section>
+		</section>
+		
+		<section class="section">
+			<h2>&lt;meter&gt;与&lt;progress&gt;</h2>
+			<section>
+				<h3><mark>磁盘用量</mark></h3>
+				<span>min=200 max=800 low=300 high=600 optimum=500</span><br>
+				<span>value = 250 </span><meter min="200" max="800" low="300" high="600" optimum="500" value="250"></meter>
+				<span>value = 350 </span><meter min="200" max="800" low="300" high="600" optimum="500" value="350"></meter>
+				<span>value = 500 </span><meter min="200" max="800" low="300" high="600" optimum="500" value="500"></meter>
+				<span>value = 700 </span><meter min="200" max="800" low="300" high="600" optimum="500" value="700"></meter>
+			</section>
+
+			<section>
+				<h3><mark>下载进度</mark></h3>
+				<section>
+					<progress id="progress" value="0" max="100" ></progress>
+				</section>
+			</section>
+		</section>	
+
+		<section class="section">
+			<h2>Math</h2>
+			<p>Safari中已支持，chrome中还需引入css https://developer.cdn.mozilla.net/static/styles/libs/mathml.css</p>
+			<math>
+			    <mrow>
+			      <mrow>
+			        <msup>
+			          <mi>a</mi>
+			          <mn>2</mn>
+			        </msup>
+			        <mo>+</mo>
+			        <msup>
+			          <mi>b</mi>
+			          <mn>2</mn>
+			        </msup>
+			      </mrow>
+			      <mo>=</mo>
+			      <msup>
+			        <mi>c</mi>
+			        <mn>2</mn>
+			      </msup>
+			    </mrow>
+			  </math>
+		</section>	
+		
+		<section class="section">
+			<h2>svg 与 canvas</h2>
+			<section>
+				<h3><a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG">SVG</a></h3>
+				<svg xmlns="http://www.w3.org/2000/svg" 
+					 version="1.1" 
+					 height="200"
+					 width="200">
+	  				<polygon points="100,10 40,180 190,60 10,60 160,180"
+	  					style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
+				</svg>
+			</section>
+			<section>
+				<h3><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API">Canvas</a></h3>
+				<section>
+					<canvas id="myCanvas" width="200" height="200"></canvas>
+				</section>
+			</section>
+		</section>
+	 
+		<section class="section">
+			<h2>object 与 embed</h2>
+			<p>object标签是用于 windows平台的IE浏览器的</p>
+			<p>embed是用于windows和Macintosh平台下的Netscape Navigator浏览器以及Macintosh平台下的IE浏览器</p>
+			<section>
+				<embed  width="480" 
+					    height="400" 
+						type="application/x-shockwave-flash"
+						src="http://player.youku.com/player.php/sid/XMzI2NTc4NTMy/v.swf">
+			</section>
+		</section>	
+
+		
+	</main>
+	
+
+	<script type="text/javascript">
+		document.getElementById('form').onchange=function(e){
+			document.getElementById(e.target.type).innerHTML = e.target.value;
+		}
+
+		function progress(value){
+			document.getElementById('progress').value = value;
+		}
+		var start = 0;
+		setInterval(function(){
+			progress(start);
+			start += 10;
+		},1000);
+	</script>
+
+
+</body>
+</html>

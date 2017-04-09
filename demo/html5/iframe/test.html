@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试页面</title>
+	<meta charset="utf-8">
+</head>
+	<body>
+		<form>
+			<input type="number">
+			<input type="submit" >
+		</form>
+		<div>
+			<a href="https://www.baidu.com/" target="_blank">_blank</a>
+			<a href="https://www.baidu.com/" target="_self">_self</a>
+			<a href="https://www.baidu.com/" target="_top">_top</a>
+			<a href="https://www.baidu.com/" target="_parent">_parent</a>	
+		</div>
+		
+		<div>
+			父窗口 <script type="text/javascript">document.write(window.parent.location.href)</script><br>
+			本窗口 <script type="text/javascript">document.write(window.location.href)</script>
+		</div>
+		<script type="text/javascript">
+			console.log('脚本执行...');
+			
+			// var queryIframe = window.parent.document.getElementById('query');
+			// queryIframe.sandbox = 'allow-scripts allow-same-origin';
+
+			// onload = function(){
+			// 	// debugger;
+			// 	url = location.href; 
+			// 	var times = url.split("?"); 
+
+			// 	if(times[1] != 1){ 
+
+			// 		url += "?1";  
+
+			// 		self.location.replace(url); 
+
+			// 	} 
+			// }
+			
+		</script>
+	</body>
+</html>
