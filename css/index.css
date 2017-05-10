@@ -48,6 +48,7 @@ p{
     text-align: center;
 }
 .deck > a{
+    display: -webkit-flex;
     display: flex;
     justify-content: center;
     align-items: center;

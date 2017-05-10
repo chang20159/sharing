@@ -566,19 +566,15 @@ section, article, aside, footer, header, nav, hgroup{
 --- 
 
 ## Polyfill
+```javascript
+if (!Function.prototype.bind) { 
+    Function.prototype.bind = function(){
+        ...
+    } 
+}
+```
 
 [HTML5 Cross Browser Polyfills](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills)
-<aside class="notes">
-    Polyfill或者Polyfiller，是英国Web开发者 Remy Sharp 在咖啡店蹲坑的时候拍脑袋造出来的。当时他想用一个词来形容"用JavaScript（或者Flash之类的什么鬼）来实现一些浏览器不支持的原生API"。Shim这个已经有的词汇第一时间出现在他的脑海里。但是他回头想了一下Shim一般有自己的API，而不是单纯实现原生不支持的API。苦思冥想一直想不到合适的单词，于是他一怒之下造了一个单词Polyfill。除了他自己用这个词以外，他还给其他开发者用。随着他在各种Web会议演讲和他写的书《Introducing HTML5》中频繁提到这个词，大家用了都觉得很好，就一起来用。
-    Polyfill的准确意思为：用于实现浏览器并不支持的原生API的代码。
-    例如，querySelectorAll是很多现代浏览器都支持的原生Web API，但是有些古老的浏览器并不支持，那么假设有人写了库，只要用了这个库， 你就可以在古老的浏览器里面使用document.querySelectorAll，使用方法跟现代浏览器原生API无异。那么这个库就可以称为Polyfill或者Polyfiller。
-
-    好，那么问题就来了。jQuery是不是一个Polyfill?答案是No。因为它并不是实现一些标准的原生API，而是封装了自己API。一个Polyfill是抹平新老浏览器 标准原生API 之间的差距的一种封装，而不是实现自己的API。
-
-    已有的一些Polyfill，如 Polymer 是让旧的浏览器也能用上 HTML5 Web Component 的一个Polyfill。FlashCanvas是用Flash实现的可以让不支持Canvas API的浏览器也能用上Canvas的Polyfill。
-
-    这里有一堆Polyfills，有兴趣可以把玩一下：HTML5 Cross Browser Polyfills
-</aside>
 
 --- 
 # 参考
